@@ -140,7 +140,7 @@ public struct File {
         return try fileManager.contentsOfDirectory(atPath: mapToPath(paths))
     }
     
-    public static func subpaths(atPath paths: [String]) throws -> [String]? {
+    public static func subpaths(atPath paths: [String]) -> [String]? {
         return fileManager.subpaths(atPath: mapToPath(paths))
     }
     
