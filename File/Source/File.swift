@@ -136,6 +136,14 @@ public struct File {
         return fileManager.fileExists(atPath: mapToPath(paths), isDirectory: isDirectory)
     }
     
+    public static func contentsOfDirectory(atPath paths: [String]) throws -> [String] {
+        return try fileManager.contentsOfDirectory(atPath: mapToPath(paths))
+    }
+    
+    public static func subpaths(atPath paths: [String]) throws -> [String]? {
+        return fileManager.subpaths(atPath: mapToPath(paths))
+    }
+    
     private static func mapToPath(_ paths:[String]) -> String {
         var path = ""
         for appendingPath in paths {
