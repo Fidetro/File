@@ -90,6 +90,7 @@ extension String:StringPath {
 
 public struct File {
     private static let fileManager = FileManager()
+    
     public static func createDirectory(appendingPaths: [String], attributes attr: [FileAttributeKey : Any]? = nil) throws {
         let path = mapToPath(appendingPaths)
         debugPrintLog(path)
@@ -97,7 +98,7 @@ public struct File {
         try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: attr)
     }
     
-    public static func createFile(appendingPath: String, filename: String, content:Data?, attributes attr: [FileAttributeKey : Any]? = nil) {
+    private static func createFile(appendingPath: String, filename: String, content:Data?, attributes attr: [FileAttributeKey : Any]? = nil) {
         let path = appendingPath+"/"+filename
         debugPrintLog(path)
         fileManager.createFile(atPath: path, contents: content, attributes: attr)
@@ -108,32 +109,36 @@ public struct File {
         createFile(appendingPath: mapToPath(appendingPaths), filename: filename, content: content, attributes:attr)
     }
     
-    public static func moveItem(atPath srcPath: String, toPath dstPath: String) throws {
+    private static func moveItem(atPath srcPath: String, toPath dstPath: String) throws {
         try fileManager.moveItem(atPath: srcPath, toPath: dstPath)
     }
     
-    public static func removeItem(atPath path: String) throws {
+    public static func moveItem(atPaths srcPaths: [String], toPaths dstPaths: [String]) throws {
+        try moveItem(atPath: mapToPath(srcPaths), toPath: mapToPath(dstPaths))
+    }
+    
+    private static func removeItem(atPath path: String) throws {
         try fileManager.removeItem(atPath: path)
     }
     
     public static func removeItem(atPaths paths: [String]) throws {
-        try fileManager.removeItem(atPath: mapToPath(paths))
+        try removeItem(atPath: mapToPath(paths))
     }
     
-    public static func copyItem(atPath srcPath: String, toPath dstPath: String) throws {
+    private static func copyItem(atPath srcPath: String, toPath dstPath: String) throws {
         try fileManager.copyItem(atPath: srcPath, toPath: dstPath)
     }
     
-    public static func copyItem(atPaths srcPaths: [String], toPath dstPath: String) throws {
-        try fileManager.copyItem(atPath: mapToPath(srcPaths), toPath: dstPath)
+    public static func copyItem(atPaths srcPaths: [String], toPaths dstPaths: [String]) throws {
+        try copyItem(atPath: mapToPath(srcPaths), toPath: mapToPath(dstPaths))
     }
     
-    public static func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool {
+    private static func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool {
         return fileManager.fileExists(atPath: path, isDirectory: isDirectory)
     }
     
-    public static func fileExists(atPath paths: [String], isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool {
-        return fileManager.fileExists(atPath: mapToPath(paths), isDirectory: isDirectory)
+    public static func fileExists(atPaths paths: [String], isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool {
+        return fileExists(atPath: mapToPath(paths), isDirectory: isDirectory)
     }
     
     public static func contentsOfDirectory(atPath paths: [String]) throws -> [String] {
