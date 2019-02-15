@@ -133,7 +133,8 @@
 			children = (
 				9A8E804F21883E5900E24441 /* File.swift */,
 			);
-			path = Sources;
+			name = Sources;
+			path = ../Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
