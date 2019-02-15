@@ -1,7 +1,13 @@
 # FileManager extension
 
-look like this:
-```swift
-try! File.createFile(appendingPaths: [.documentDirectory,"first","second"], filename: "test.txt", content: nil)
-        try! File.removeItem(atPaths: [.documentDirectory,"first"])
+## CocoaPod
+
 ```
+platform :ios, '8.0'
+target 'YouApp' do
+use_frameworks!
+pod 'File'
+end
+```
+
+

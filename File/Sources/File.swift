@@ -21,7 +21,7 @@ fileprivate func debugCode(_ body: () -> Void) {
     assert({ body(); return true }())
 }
 
-protocol StringPath {}
+public protocol StringPath {}
 extension String:StringPath {
     
     public static let applicationDirectory = NSSearchPathForDirectoriesInDomains(.applicationDirectory, .userDomainMask, true)[0]
@@ -155,6 +155,7 @@ public struct File {
             path = path + appendingPath + "/"
         }
         path.removeLast()
+        debugPrintLog(path)
         return path
     }
 }

@@ -99,7 +99,7 @@
 		9A8E802021883E2C00E24441 /* File */ = {
 			isa = PBXGroup;
 			children = (
-				9A8E805121884DB200E24441 /* Source */,
+				9A8E805121884DB200E24441 /* Sources */,
 				9A8E802121883E2C00E24441 /* AppDelegate.swift */,
 				9A8E802321883E2C00E24441 /* ViewController.swift */,
 				9A8E802521883E2C00E24441 /* Main.storyboard */,
@@ -128,12 +128,12 @@
 			path = FileUITests;
 			sourceTree = "<group>";
 		};
-		9A8E805121884DB200E24441 /* Source */ = {
+		9A8E805121884DB200E24441 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				9A8E804F21883E5900E24441 /* File.swift */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
