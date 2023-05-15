@@ -149,7 +149,7 @@ public struct File {
         return fileManager.subpaths(atPath: mapToPath(paths))
     }
     
-    private static func mapToPath(_ paths:[String]) -> String {
+    public static func mapToPath(_ paths:[String]) -> String {
         var path = ""
         for appendingPath in paths {
             path = path + appendingPath + "/"
