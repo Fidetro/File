@@ -8,19 +8,6 @@
 
 import Foundation
 
-fileprivate func debugPrintLog<T>(_ message: T,
-                                  file: String = #file,
-                                  method: String = #function,
-                                  line: Int = #line)
-{
-    assert({ print("\(file)[\(line)], \(method): \(message)"); return true }())
-}
-
-
-fileprivate func debugCode(_ body: () -> Void) {
-    assert({ body(); return true }())
-}
-
 public protocol StringPath {}
 extension String:StringPath {
     
@@ -93,14 +80,12 @@ public struct File {
     
     public static func createDirectory(appendingPaths: [String], attributes attr: [FileAttributeKey : Any]? = nil) throws {
         let path = mapToPath(appendingPaths)
-        debugPrintLog(path)
         let url = URL(fileURLWithPath: path)
         try fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: attr)
     }
     
     private static func createFile(appendingPath: String, filename: String, content:Data?, attributes attr: [FileAttributeKey : Any]? = nil) {
         let path = appendingPath+"/"+filename
-        debugPrintLog(path)
         fileManager.createFile(atPath: path, contents: content, attributes: attr)
     }
     
@@ -155,7 +140,6 @@ public struct File {
             path = path + appendingPath + "/"
         }
         path.removeLast()
-        debugPrintLog(path)
         return path
     }
 }
